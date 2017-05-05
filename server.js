@@ -15,15 +15,20 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.text());
 server.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-//Static Directoryapp.engine("handlebars", exphbs({ defaultLayout: "main" }));
+//Static Directory
 server.use(express.static("./public"));
 
 //HandleBars
 server.engine("handlebars", exphbs({ defaultLayout: "main" }));
 server.set("view engine", "handlebars");
 
-//Paths to Routes
+//Paths to API Routes
 var route = require("./controller/burger-controller.js");
+
+//HTML Route
+server.get("/", function(request, response){
+	response.render("index", {burgers: data});
+});
 
 //Listener
 server.listen(port, function(error){
