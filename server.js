@@ -18,8 +18,7 @@ server.use(bodyParser.json({ type: "application/vnd.api+json" }));
 server.use(express.static("./public"));
 
 //Paths to Routes
-require("./routes/html-routes.js")(server);
-require("./routes/api-routes.js")(server);
+require("./controller/burger-controller.js")(server);
 
 //Listener
 server.listen(port, function(error){
