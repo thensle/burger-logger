@@ -3,36 +3,36 @@ var connection = require("./connection.js");
 
 //Create ORM for MySQL queries
 var orm = {
-	selectAll: function(devoured_value){
-		var query = "Select * from burgers where devoured=?";
-		connection.query(query, [devoured_value], function(error, result){
+	selectAll: function(table_name, column_name, column_value, callBack){
+		var query = "Select * from ?? where ??=?";
+		connection.query(query, [table_name, column_name, column_value], function(error, result){
 			if (error){
 				console.log(error);
 			} else {
-				console.log(result);
+				callBack(result);
 			};
 		});
-	};
-	insertOne: function(name){
-		var query = "Insert into burgers (burger_name) values (?)";
-		connection.query(query, [name], function(error, result){
+	},
+	insertOne: function(table_name, variable, name, callBack){
+		var query = "Insert into ?? (??) values (?)";
+		connection.query(query, [table_name, variable, name], function(error, result){
 			if (error){
 				console.log(error);
 			} else {
-				console.log(result);
+				callBack(result);
 			};
 		});
-	};
-	updateOne: function(devoured_value, burger_id){
-		var query = "Update burgers set devoured=? where id=?";
-		connection.query(query, [devoured_value, burger_id], function(error, result){
+	},
+	updateOne: function(table_name, column_name, column_value, id, id_value, callBack){
+		var query = "Update ?? set ??=? where ??=?";
+		connection.query(query, [table_name, column_name, column_value, id, id_value], function(error, result){
 			if (error){
 				console.log(error);
 			} else {
-				console.log(result);
+				callBack(result);
 			};
 		});
-	};
+	}
 };
 
 module.exports = orm;
