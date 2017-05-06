@@ -3,9 +3,9 @@ var connection = require("./connection.js");
 
 //Create ORM for MySQL queries
 var orm = {
-	selectAll: function(table_name, column_name, column_value, callBack){
-		var query = "Select * from ?? where ??=?";
-		connection.query(query, [table_name, column_name, column_value], function(error, result){
+	selectAll: function(table_name, callBack){
+		var query = "Select * from ??";
+		connection.query(query, [table_name], function(error, result){
 			if (error){
 				console.log(error);
 			} else {

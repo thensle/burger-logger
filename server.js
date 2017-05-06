@@ -22,13 +22,12 @@ server.use(express.static("./public"));
 server.engine("handlebars", exphbs({ defaultLayout: "main" }));
 server.set("view engine", "handlebars");
 
+//Method-Override
+server.use(methodOverride("_method"));
+
 //Paths to API Routes
 var route = require("./controller/burger-controller.js");
-
-//HTML Route
-server.get("/", function(request, response){
-	response.render("index", {burgers: data});
-});
+server.use("/", route);
 
 //Listener
 server.listen(port, function(error){
