@@ -7,12 +7,16 @@ var router = express.Router();
 
 router.post("/", function(request, response){
 	var name = req.body.text;
-	burger.addBurger(name);
+	burger.addBurger(name, function(data){
+		response.redirect("/");
+	});
 });
 
 router.put("/:id", function(request, response){
 	var id = req.params.id;
-	burger.devourBurger(id);
+	burger.devourBurger(id, function(data){
+		response.redirect("/");
+	});
 });
 
 router.get("/", function(request, response){
@@ -20,7 +24,6 @@ router.get("/", function(request, response){
 		var burgers = {
 			devoured: data
 		};
-
 		response.render("index", burgers);
 	});
 });
